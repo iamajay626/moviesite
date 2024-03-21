@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:home' %}">HOME</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'shop:movie_list' %}">All Movies</a></li>
+          {% for category in categories %}
+            <li><a class="dropdown-item" href="{% url 'shop:category_detail' category_id=category.id %}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:movie_list' %}">View Movies</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:add_movie' %}">Add Movie</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:profile' %}">View Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:register' %}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'shop:login' %}">Login</a>
+      </li>
+      {% endif %}
+      {% if item_count > 0 %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cart_app:cart_detail' %}">
+          <i class="fa-solid fa-cart-shopping"></i>
+          ({{ item_count }})
+          Cart
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+    <!-- Search option -->
+    <li class="nav-item">
+      <form class="form-inline my-2 my-lg-0" action="{% url 'shop:SearchResult' %}" method="get">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </li>
+  </div>
+</nav>

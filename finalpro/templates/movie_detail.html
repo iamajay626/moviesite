@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+    <h1>{{ movie.title }}</h1>
+    <p>Description: {{ movie.description }}</p>
+    <!-- Add more movie details as needed -->
+    <p>{{ movie.description }}</p>
+    <img src="{{ movie.poster.url }}">
+    <p>Release Date: {{ movie.release_date }}</p>
+    <p>Actors: {{ movie.actors }}</p>
+    <p>Trailer: <a href="{{ movie.trailer_link }}">Watch Trailer</a></p>
+    <p>Added by: {{ movie.added_by.username }}</p>
+    {{movie.categories}}
+    <p>Categories:
+        {% for category in movie.categories.all %}
+            {{ category.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    {% if request.user == movie.added_by %}
+    <br>
+    <form action="{% url 'shop:edit_movie' movie_id=movie.id %}" method="get" style="display: inline;">
+        <button type="submit">Edit</button>
+    </form>
+    <form action="{% url 'shop:delete_movie' movie_id=movie.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    {% endif %}
+
+    <br>
+
+    <form action="{% url 'shop:add_review' movie_id=movie.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Review</button>
+    </form>
+    <form action="{% url 'shop:add_review' movie_id=movie.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Rate</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to Movie World
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} - Movie World
+    {% else %}
+        See Our Collections - Movie World
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if category %}
+        <div>
+            <div>
+                <div class="row my_row_class">
+                    <div class="mx-auto">
+                        <p>
+                            <a href="{% url 'shop:movie_list' %}">Our Collection</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
+        </div><br>
+        <div>
+            <h1 class="text-center my_title">{{ category.name }}</h1>
+            <p class="text-justify">{{ category.description }}</p>
+        </div>
+    {% else %}
+        <div>
+            <img class="my_image my_image_padding" src="{% static 'img/movie_banner.png' %}" alt="Our Products" width="1330;">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center my_title">
+                Our Collection
+            </h1>
+            <p class="text-justify">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="row mx-auto">
+            {% for movie in movies %}
+                <div class="col-9 col-sm-12 col-md-4 col-lg-4">
+                    <div class="image-container">
+                        <img src="{{ movie.poster.url }}"  alt="{{ movie.title }}">
+                        <div class="image-detail">
+                            <h5 class="card-title text-center">{{ movie.title }}</h5>
+                            <div class="text-center">
+                                <a href="{% url 'shop:movie_detail' movie_id=movie.pk %}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mx-auto">
+        {% if movies.paginator.num_pages > 1 %}
+            <hr>
+            <div class="text-center">
+                {% for pg in movies.paginator.page_range %}
+                    <a href="?page={{pg}}" class="btn btn-light btn-sm" {% if movies.number == pg %} active {% endif %}>{{pg}}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

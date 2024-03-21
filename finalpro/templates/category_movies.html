@@ -1,0 +1,17 @@
+<!-- category_movies.html -->
+{% extends 'movie_list_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+</head>
+<body>
+    <h1>{{ category.name }}</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

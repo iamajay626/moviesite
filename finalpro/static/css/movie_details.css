@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height of the viewport is covered */
+    background: whitesmoke;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px; /* Limit maximum width of content */
+    padding: 20px;
+}
+
+.card {
+    margin-bottom: 40px; /* Add some space between cards */
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    transition: transform 0.5s;
+}
+
+.info {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Darken background for better readability */
+    color: white;
+    transition: background-color 0.5s;
+}
+
+.info:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Further darken background on hover */
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.5; /* Increase line height for better readability */
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s; /* Add transition for opacity change */
+}
+
+.edit-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.review-btn {
+    background-color: #2196F3; /* Blue */
+    color: white;
+}
+
+.rate-btn {
+    background-color: #FFC107; /* Yellow */
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+
+.buttons {
+    margin-top: 10px;
+    margin-bottom: 1px; /* Add margin at the bottom of the buttons */

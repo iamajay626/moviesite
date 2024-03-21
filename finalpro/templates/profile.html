@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <h2>{{ user.username }}</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <!-- Movies added by the user -->
+    <h2>Movies Added</h2>
+    <ul>
+        {% for movie in user.movie_set.all %}
+            <li>{{ movie.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Reviews by the user -->
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in user.review_set.all %}
+            <li>
+                <strong>Movie:</strong> {{ review.movie.title }}<br>
+                <strong>Rating:</strong> {{ review.rating }}<br>
+                <strong>Comment:</strong> {{ review.comment }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add the Edit Profile button here -->
+    <form action="{% url 'shop:edit_profile' %}" method="get">
+        <button type="submit">Edit Profile</button>
+    </form>
+</body>
+</html>

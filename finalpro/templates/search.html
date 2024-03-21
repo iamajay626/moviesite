@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+<div>
+    <p class="text-center my_search">You Have Searched For: <b>"{{ query }}"</b></p>
+</div>
+
+<div class="container">
+        <div class="row mx-auto">
+            {% for movie in movies %}
+                <div class="col-9 col-sm-12 col-md-4 col-lg-4">
+                    <div class="image-container">
+                        <img src="{{ movie.poster.url }}"  alt="{{ movie.title }}">
+                        <div class="image-detail">
+                            <h5 class="card-title text-center">{{ movie.title }}</h5>
+                            <div class="text-center">
+                                <a href="{% url 'shop:movie_detail' movie_id=movie.pk %}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text">No Results Found</p>
+        </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

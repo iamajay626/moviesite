@@ -1,0 +1,176 @@
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Welcome to Movie Platform</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <h1>Welcome to Movie Platform</h1>
+    <p>Discover, share, and discuss the latest movies!</p>
+    <ul>
+
+        {% if user.is_authenticated %}
+        <li> hi {{user.username}}</li>
+        <li><a href="{% url 'movie_list' %}">View Movies</a></li>
+        <li><a href="{% url 'add_movie' %}">Add Movie</a></li>
+        <li><a href="{% url 'add_category' %}">Add Category</a></li>
+        <li><a href="{% url 'profile' %}">View Profile</a></li>
+        <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+
+        {% else %}
+        <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+
+
+
+
+    </ul>
+{% endblock %}
+<!--</body>-->
+<!--</html>-->
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Website</title>
+    <style>
+        body {
+            font-family: poppins;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- movie icon -->
+    <link rel="shortcut icon" href="{% static 'img/movieicon.png' %}">
+    <!-- using FontAwesome -->
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- navigation -------------->
+<nav>
+    <!-- logo --------------->
+    <a href="#" class="logo">
+        <img src="{% static 'images/logo.png' %}"/>
+    </a>
+    <!-- menu-btn --------------->
+    <input type="checkbox" class="menu-btn" id="menu-btn"/>
+    <label class="menu-icon" for="menu-btn">
+        <span class="nav-icon"></span>
+    </label>
+    <!-- menu --------------->
+    <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">TV Shows</a></li>
+        <li><a href="#">Hollywood</a></li>
+        <li><a href="#">Horror</a></li>
+    </ul>
+    <!-- search --------------->
+    <div class="search">
+        <input type="text" placeholder="Find Your Favorite Movies"/>
+        <!-- search-icon --------------->
+        <i class="fas fa-search"></i>
+    </div>
+</nav>
+<section id="main">
+    <!-- showcase ----------------------->
+    <!-- heading --------------->
+    <h1 class="showcase-heading">Showcase</h1>
+
+    <ul id="autoWidth" class="cs-hidden">
+        <!-- box-1 --------------------------->
+        <li class="item-a">
+            <!-- showcase-box ------------------->
+            <div class="showcase-box">
+                <img src="{% static 'images/s-1.jpg' %}"/>
+            </div>
+        </li>
+        <!-- box-2 --------------------------->
+        <li class="item-b">
+            <!-- showcase-box ------------------->
+            <div class="showcase-box">
+                <img src="{% static 'images/s-2.jpg' %}"/>
+            </div>
+        </li>
+        <!-- box-3 --------------------------->
+        <li class="item-c">
+            <!-- showcase-box ------------------->
+            <div class="showcase-box">
+                <img src="{% static 'images/s-3.jpg' %}"/>
+            </div>
+        </li>
+        <!-- box-4 --------------------------->
+        <li class="item-d">
+            <!-- showcase-box ------------------->
+            <div class="showcase-box">
+                <img src="{% static 'images/s-4.jpg' %}"/>
+            </div>
+        </li>
+        <!-- box-5 --------------------------->
+        <li class="item-e">
+            <!-- showcase-box ------------------->
+            <div class="showcase-box">
+                <img src="{% static 'images/s-5.png' %}"/>
+            </div>
+        </li>
+    </ul>
+</section>
+<!-- latest-movies ---------------------->
+<section id="latest">
+    <h2 class="latest-heading">Latest Movies</h2>
+    <!-- slider ------------------->
+    <ul id="autoWidth2" class="cs-hidden">
+        <!-- slide-box-1 ------------------>
+        <li class="item-a">
+            <div class="latest-box">
+                <!-- img -------->
+                <div class="latest-b-img">
+                    <img src="{% static 'images/m-1.jpg' %}">
+                </div>
+                <!-- text ---------->
+                <div class="latest-b-text">
+                    <strong>Kin 2018</strong>
+                    <p>Action Movie</p>
+                </div>
+            </div>
+        </li>
+        <!-- slide-box-2 ------------------>
+        <!-- remaining slides ... -->
+    </ul>
+</section>
+<!-- movies ---------------------------->
+<div class="movies-heading">
+    <h2>Movies</h2>
+</div>
+<section id="movies-list">
+    <!-- box-1 ------------------------>
+    <!-- remaining movie boxes ... -->
+</section>
+<!-- btns --------------->
+<div class="btns">
+    <a href="#">Previous</a>
+    <a href="#">Next</a>
+</div>
+<!-- footer ------------------>
+<footer>
+    <p>Going To Internet, Ltd Consumer Website</p>
+    <p>Copyright 2020 - GoingToInternet</p>
+</footer>
+<!-- JavaScript -->
+<script src="{% static 'js/js.js' %}"></script>
+</body>
+</html>
